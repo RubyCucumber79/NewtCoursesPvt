@@ -1,16 +1,23 @@
 todos = []
 
 while True:
-    user_action = input("typye add,show,edit,complete or exit")
+    user_action = input("typye add,show,edit,complete or exit: ")
     user_action = user_action.strip()
 
     match user_action:
         case 'add':
-            todo = input("Enter a todo: ")
+            todo = input("Enter a todo: ") + "\n"
+            file = open('todos/todos.txt','r')
+            todos = file.readlines()
+            file.close()
             todos.append(todo)
+            file = open('todos/todos.txt','w')
+            file.writelines(todos)
+            file.close()
         case 'show':
-            for index,item in enumerate(todos):
-                print(index,'-',item)
+            file = open('todos.txt','r')
+            todos = file.readlines()
+            file.close()
         case 'edit':
             number = input("Number of todos to edit")
             number = number-1
