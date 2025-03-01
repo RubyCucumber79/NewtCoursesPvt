@@ -18,9 +18,10 @@ while True:
             file = open('todos.txt','r')
             todos = file.readlines()
             file.close()
-            new_todos = [item.strip('\n') for item in todos]
+            #new_todos = [item.strip('\n') for item in todos]
 
-            for index,item in enumerate(new_todos):
+            for index,item in enumerate(todos):
+                item = item.strip('\n')
                 row = f"{index+1}-{item}"
                 print(row)
         case 'edit':
