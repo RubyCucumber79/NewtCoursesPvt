@@ -4,8 +4,8 @@ while True:
     user_action = input("typye add,show,edit,complete or exit: ")
     user_action = user_action.strip()
 
-    match user_action:
-        case 'add':
+    if 'add' in user_action:
+        
             todo = input("Enter a todo: ") + "\n"
             with open('todos/todos.txt','r') as file:
                 todos = file.readlines()
@@ -14,7 +14,7 @@ while True:
 
             with open('todos.txt','w') as file:
                 file.writelines(todos)
-        case 'show':
+    if 'show' in user_action:
             with open('todos.txt','r') as file:
                 todos = file.readlines()
             
@@ -24,7 +24,7 @@ while True:
                 item = item.strip('\n')
                 row = f"{index+1}-{item}"
                 print(row)
-        case 'edit':
+    if 'edit' in user_action:
             number = input("Number of todos to edit")
             number = number-1
             with open('todos.txt','r') as file:
@@ -35,7 +35,7 @@ while True:
             with open('todos.txt','w') as file:
                 file.writelines(todos)
             
-        case 'complete':
+    if 'complete' in  user_action:
             number = int(input("Number of todos to complete: "))
             with open('todos.txt','r') as file:
                 todos = file.readlines()
@@ -46,7 +46,7 @@ while True:
                 file.writelines(todos)
             message = f"Todo {todo_to_remove} was removed from the list"
             print(message)
-        case 'exit':
+    if 'exit' in user_action:
             break
         
 
