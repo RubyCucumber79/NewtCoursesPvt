@@ -1,6 +1,10 @@
 import FreeSimpleGUI
 import functions
+import os
 
+if not os.path.exists("todos.txt"):
+    with open("todos.txt",'w') as file:
+        pass 
 FreeSimpleGUI.theme("Black")
 label = FreeSimpleGUI.Text("Type in a to-do")
 input_box = FreeSimpleGUI.InputText(tooltip="Enter todo",key="todo")
@@ -36,7 +40,7 @@ while True:
                 FreeSimpleGUI.popup("please select itiem first")
 
         case "Complete":
-            todo_to_complete = todos['todos']
+            todo_to_complete = values['todos'][0]
             todos = functions.get_todos()
             todos.remove(todo_to_complete)
             functions.write_todos(todos)
