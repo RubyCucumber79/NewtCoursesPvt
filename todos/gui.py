@@ -1,6 +1,7 @@
 import FreeSimpleGUI
 import functions
 
+FreeSimpleGUI.theme("Black")
 label = FreeSimpleGUI.Text("Type in a to-do")
 input_box = FreeSimpleGUI.InputText(tooltip="Enter todo",key="todo")
 add_button = FreeSimpleGUI.Button("Add")
@@ -15,9 +16,6 @@ window = FreeSimpleGUI.Window("My To-Do App",
 
 while True:
     event,values = window.read()
-    print(event)
-    print(values)
-    print(values['todos'])
     match event:
         case "Add":
             todos = functions.get_todos()
@@ -26,13 +24,17 @@ while True:
             functions.write_todos(todos)
             window['todos'].update(values= todos)
         case "Edit":
-            todo_to_edit = values['todos'][0]
-            new_todo = values['todo']
-            todos = functions.get_todos()
-            index = todos.index(todo_to_edit)
-            todos[index] = new_todo
-            functions.write_todos(todos)
-            window['todos'].update(values= todos)
+            try:
+                todo_to_edit = values['todos'][0]
+                new_todo = values['todo']
+                todos = functions.get_todos()
+                index = todos.index(todo_to_edit)
+                todos[index] = new_todo
+                functions.write_todos(todos)
+                window['todos'].update(values= todos)
+            except IndexError:
+                FreeSimpleGUI.popup("please select itiem first")
+
         case "Complete":
             todo_to_complete = todos['todos']
             todos = functions.get_todos()
