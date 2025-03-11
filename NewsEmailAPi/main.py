@@ -27,4 +27,3 @@ for article in content["articles"][:20]:
 
 body = body.encode("utf-8")
 send_email(message=body)
-print("hi")
