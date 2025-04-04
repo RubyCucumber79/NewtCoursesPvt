@@ -3,7 +3,7 @@ import pandas as pd
 
 app = Flask(__name__)
 
-stations = pd.read_csv("data_small/stations.txt", skiprows=17)
+stations = pd.read_csv("./weatherAPI/data_small/stations.txt", skiprows=17)
 stations = stations[["STAID", "STANAME                                 "]]
 
 
